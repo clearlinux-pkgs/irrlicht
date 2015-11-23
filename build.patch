@@ -1,0 +1,22 @@
+diff -Nurb irrlicht-1.8.3-orig/source/Irrlicht/Makefile irrlicht-1.8.3/source/Irrlicht/Makefile
+--- irrlicht-1.8.3-orig/source/Irrlicht/Makefile	2015-11-18 18:08:26.460764916 +0000
++++ irrlicht-1.8.3/source/Irrlicht/Makefile	2015-11-18 18:19:58.174170483 +0000
+@@ -1,6 +1,9 @@
+ VERSION_MAJOR = 1
+ VERSION_MINOR = 8
+ VERSION_RELEASE = 3
++
++all: sharedlib
++
+ # Irrlicht Engine 1.8.3
+ # Makefile for Linux
+ #
+@@ -86,7 +89,7 @@
+ staticlib sharedlib install: SYSTEM = Linux
+ STATIC_LIB = libIrrlicht.a
+ LIB_PATH = ../../lib/$(SYSTEM)
+-INSTALL_DIR = /usr/local/lib
++INSTALL_DIR = $(DESTDIR)/usr/lib64
+ sharedlib install: SHARED_LIB = libIrrlicht.so
+ sharedlib: LDFLAGS += -L/usr/X11R6/lib$(LIBSELECT) -lGL -lXxf86vm
+ staticlib sharedlib: CXXINCS += -I/usr/X11R6/include
