@@ -4,7 +4,7 @@
 #
 Name     : irrlicht
 Version  : 1.8.3
-Release  : 6
+Release  : 7
 URL      : http://downloads.sourceforge.net/project/irrlicht/Irrlicht%20SDK/1.8/1.8.3/irrlicht-1.8.3.zip
 Source0  : http://downloads.sourceforge.net/project/irrlicht/Irrlicht%20SDK/1.8/1.8.3/irrlicht-1.8.3.zip
 Summary  : zlib compression library
@@ -48,8 +48,13 @@ lib components for the irrlicht package.
 %patch1 -p1
 
 %build
+export CFLAGS="$CFLAGS -std=gnu++98 "
+export FCFLAGS="$CFLAGS -std=gnu++98 "
+export FFLAGS="$CFLAGS -std=gnu++98 "
+export CXXFLAGS="$CXXFLAGS -std=gnu++98 "
 pushd source/Irrlicht
 make V=1  %{?_smp_mflags}
+popd
 
 %install
 rm -rf %{buildroot}
