@@ -1,17 +1,18 @@
-diff -Nurb irrlicht-1.8.3-orig/source/Irrlicht/Makefile irrlicht-1.8.3/source/Irrlicht/Makefile
---- irrlicht-1.8.3-orig/source/Irrlicht/Makefile	2015-11-18 18:08:26.460764916 +0000
-+++ irrlicht-1.8.3/source/Irrlicht/Makefile	2015-11-18 18:19:58.174170483 +0000
+diff --git a/source/Irrlicht/Makefile b/source/Irrlicht/Makefile
+index 67a3899..3699f10 100644
+--- a/source/Irrlicht/Makefile
++++ b/source/Irrlicht/Makefile
 @@ -1,6 +1,9 @@
  VERSION_MAJOR = 1
  VERSION_MINOR = 8
- VERSION_RELEASE = 3
+ VERSION_RELEASE = 4
 +
 +all: sharedlib
 +
- # Irrlicht Engine 1.8.3
+ # Irrlicht Engine 1.8.4
  # Makefile for Linux
  #
-@@ -86,7 +89,7 @@
+@@ -86,7 +89,7 @@ endif
  staticlib sharedlib install: SYSTEM = Linux
  STATIC_LIB = libIrrlicht.a
  LIB_PATH = ../../lib/$(SYSTEM)
