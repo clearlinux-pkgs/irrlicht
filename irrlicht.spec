@@ -4,7 +4,7 @@
 #
 Name     : irrlicht
 Version  : 1.8.4
-Release  : 11
+Release  : 12
 URL      : https://sourceforge.net/projects/irrlicht/files/Irrlicht%20SDK/1.8/1.8.4/irrlicht-1.8.4.zip
 Source0  : https://sourceforge.net/projects/irrlicht/files/Irrlicht%20SDK/1.8/1.8.4/irrlicht-1.8.4.zip
 Summary  : zlib compression library
