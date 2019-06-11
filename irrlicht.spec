@@ -4,18 +4,19 @@
 #
 Name     : irrlicht
 Version  : 1.8.4
-Release  : 13
+Release  : 14
 URL      : https://sourceforge.net/projects/irrlicht/files/Irrlicht%20SDK/1.8/1.8.4/irrlicht-1.8.4.zip
 Source0  : https://sourceforge.net/projects/irrlicht/files/Irrlicht%20SDK/1.8/1.8.4/irrlicht-1.8.4.zip
 Summary  : zlib compression library
 Group    : Development/Tools
 License  : Libpng bzip2-1.0.6
-Requires: irrlicht-lib
-BuildRequires : cmake
+Requires: irrlicht-lib = %{version}-%{release}
+Requires: irrlicht-license = %{version}-%{release}
+BuildRequires : buildreq-cmake
+BuildRequires : buildreq-scons
 BuildRequires : mesa-dev
-BuildRequires : python-dev
-BuildRequires : scons
 Patch1: build.patch
+Patch2: build-Update-libpng-to-1.6.37.patch
 
 %description
 ZLIB DATA COMPRESSION LIBRARY
@@ -28,8 +29,9 @@ rfc1952 (gzip format).
 %package dev
 Summary: dev components for the irrlicht package.
 Group: Development
-Requires: irrlicht-lib
-Provides: irrlicht-devel
+Requires: irrlicht-lib = %{version}-%{release}
+Provides: irrlicht-devel = %{version}-%{release}
+Requires: irrlicht = %{version}-%{release}
 
 %description dev
 dev components for the irrlicht package.
@@ -38,28 +40,47 @@ dev components for the irrlicht package.
 %package lib
 Summary: lib components for the irrlicht package.
 Group: Libraries
+Requires: irrlicht-license = %{version}-%{release}
 
 %description lib
 lib components for the irrlicht package.
 
 
+%package license
+Summary: license components for the irrlicht package.
+Group: Default
+
+%description license
+license components for the irrlicht package.
+
+
 %prep
 %setup -q -n irrlicht-1.8.4
 %patch1 -p1
+%patch2 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C
-export SOURCE_DATE_EPOCH=1496075400
+export SOURCE_DATE_EPOCH=1560215917
+export GCC_IGNORE_WERROR=1
+export CFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$CFLAGS -fno-lto "
+export FFLAGS="$CFLAGS -fno-lto "
+export CXXFLAGS="$CXXFLAGS -fno-lto -std=gnu++98"
 pushd source/Irrlicht
-make V=1  %{?_smp_mflags}
+make  %{?_smp_mflags}
 popd
 
+
 %install
-export SOURCE_DATE_EPOCH=1496075400
+export SOURCE_DATE_EPOCH=1560215917
 rm -rf %{buildroot}
+mkdir -p %{buildroot}/usr/share/package-licenses/irrlicht
+cp source/Irrlicht/bzip2/LICENSE %{buildroot}/usr/share/package-licenses/irrlicht/source_Irrlicht_bzip2_LICENSE
+cp source/Irrlicht/libpng/LICENSE %{buildroot}/usr/share/package-licenses/irrlicht/source_Irrlicht_libpng_LICENSE
 pushd source/Irrlicht
 %make_install
 popd
@@ -257,3 +278,8 @@ popd
 %defattr(-,root,root,-)
 /usr/lib64/libIrrlicht.so.1.8
 /usr/lib64/libIrrlicht.so.1.8.4
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/irrlicht/source_Irrlicht_bzip2_LICENSE
+/usr/share/package-licenses/irrlicht/source_Irrlicht_libpng_LICENSE

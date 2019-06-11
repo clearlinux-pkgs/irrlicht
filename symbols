@@ -4310,6 +4310,7 @@ libIrrlicht.so.1.8:png_build_grayscale_palette
 libIrrlicht.so.1.8:png_calculate_crc
 libIrrlicht.so.1.8:png_calloc
 libIrrlicht.so.1.8:png_check_IHDR
+libIrrlicht.so.1.8:png_check_chunk_length
 libIrrlicht.so.1.8:png_check_chunk_name
 libIrrlicht.so.1.8:png_check_fp_number
 libIrrlicht.so.1.8:png_check_fp_string
