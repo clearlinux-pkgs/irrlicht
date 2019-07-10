@@ -4,7 +4,7 @@
 #
 Name     : irrlicht
 Version  : 1.8.4
-Release  : 14
+Release  : 15
 URL      : https://sourceforge.net/projects/irrlicht/files/Irrlicht%20SDK/1.8/1.8.4/irrlicht-1.8.4.zip
 Source0  : https://sourceforge.net/projects/irrlicht/files/Irrlicht%20SDK/1.8/1.8.4/irrlicht-1.8.4.zip
 Summary  : zlib compression library
@@ -14,9 +14,10 @@ Requires: irrlicht-lib = %{version}-%{release}
 Requires: irrlicht-license = %{version}-%{release}
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-scons
+BuildRequires : libpng-dev
 BuildRequires : mesa-dev
 Patch1: build.patch
-Patch2: build-Update-libpng-to-1.6.37.patch
+Patch2: build-Makefile-system-zlib-and-libpng.patch
 
 %description
 ZLIB DATA COMPRESSION LIBRARY
@@ -63,8 +64,8 @@ license components for the irrlicht package.
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
-export LANG=C
-export SOURCE_DATE_EPOCH=1560215917
+export LANG=C.UTF-8
+export SOURCE_DATE_EPOCH=1562788419
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$CFLAGS -fno-lto "
@@ -76,7 +77,7 @@ popd
 
 
 %install
-export SOURCE_DATE_EPOCH=1560215917
+export SOURCE_DATE_EPOCH=1562788419
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/irrlicht
 cp source/Irrlicht/bzip2/LICENSE %{buildroot}/usr/share/package-licenses/irrlicht/source_Irrlicht_bzip2_LICENSE
