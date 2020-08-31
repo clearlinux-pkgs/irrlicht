@@ -32,7 +32,7 @@ index 67a3899..606ce1f 100644
  ###############
  #Compiler flags
 -CXXINCS = -I../../include -Izlib -Ijpeglib -Ilibpng
-+CXXINCS = -I../../include -Ijpeglib $(pkg-config --cflags libpng)
++CXXINCS = -I../../include -Ijpeglib $(shell pkg-config --cflags libpng)
  CPPFLAGS += $(CXXINCS) -DIRRLICHT_EXPORTS=1
  CXXFLAGS += -Wall -pipe -fno-exceptions -fno-rtti -fstrict-aliasing
  ifndef NDEBUG

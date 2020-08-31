@@ -1,6 +1,7 @@
 libGL.so.1
 libX11.so.6
 libc.so.6
+libjpeg.so.62
 libm.so.6
 libpng16.so.16
 libstdc++.so.6

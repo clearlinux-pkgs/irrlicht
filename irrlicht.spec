@@ -4,28 +4,27 @@
 #
 Name     : irrlicht
 Version  : 1.8.4
-Release  : 15
+Release  : 16
 URL      : https://sourceforge.net/projects/irrlicht/files/Irrlicht%20SDK/1.8/1.8.4/irrlicht-1.8.4.zip
 Source0  : https://sourceforge.net/projects/irrlicht/files/Irrlicht%20SDK/1.8/1.8.4/irrlicht-1.8.4.zip
-Summary  : zlib compression library
+Summary  : Open source realtime 3D engine
 Group    : Development/Tools
-License  : Libpng bzip2-1.0.6
+License  : IJG Libpng Zlib bzip2-1.0.5 bzip2-1.0.6
 Requires: irrlicht-lib = %{version}-%{release}
 Requires: irrlicht-license = %{version}-%{release}
 BuildRequires : buildreq-cmake
 BuildRequires : buildreq-scons
 BuildRequires : libpng-dev
 BuildRequires : mesa-dev
+BuildRequires : pkgconfig(libjpeg)
 Patch1: build.patch
 Patch2: build-Makefile-system-zlib-and-libpng.patch
+Patch3: build-Makefile-system-libjpeg.patch
 
 %description
-ZLIB DATA COMPRESSION LIBRARY
-zlib 1.2.8 is a general purpose data compression library.  All the code is
-thread safe.  The data format used by the zlib library is described by RFCs
-(Request for Comments) 1950 to 1952 in the files
-http://tools.ietf.org/html/rfc1950 (zlib format), rfc1951 (deflate format) and
-rfc1952 (gzip format).
+The Irrlicht Engine is an open source realtime 3D engine written in C++. It is
+cross-platform, using D3D, OpenGL and its own software renderers. OpenGL-ES2
+and WebGL renderers are also in development.
 
 %package dev
 Summary: dev components for the irrlicht package.
@@ -57,19 +56,21 @@ license components for the irrlicht package.
 
 %prep
 %setup -q -n irrlicht-1.8.4
+cd %{_builddir}/irrlicht-1.8.4
 %patch1 -p1
 %patch2 -p1
+%patch3 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1562788419
+export SOURCE_DATE_EPOCH=1598914897
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
-export FCFLAGS="$CFLAGS -fno-lto "
-export FFLAGS="$CFLAGS -fno-lto "
+export FCFLAGS="$FFLAGS -fno-lto "
+export FFLAGS="$FFLAGS -fno-lto "
 export CXXFLAGS="$CXXFLAGS -fno-lto -std=gnu++98"
 pushd source/Irrlicht
 make  %{?_smp_mflags}
@@ -77,11 +78,15 @@ popd
 
 
 %install
-export SOURCE_DATE_EPOCH=1562788419
+export SOURCE_DATE_EPOCH=1598914897
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/irrlicht
-cp source/Irrlicht/bzip2/LICENSE %{buildroot}/usr/share/package-licenses/irrlicht/source_Irrlicht_bzip2_LICENSE
-cp source/Irrlicht/libpng/LICENSE %{buildroot}/usr/share/package-licenses/irrlicht/source_Irrlicht_libpng_LICENSE
+cp %{_builddir}/irrlicht-1.8.4/doc/bzip2-license.txt %{buildroot}/usr/share/package-licenses/irrlicht/d964dbe91cbf7511e4f1857db9e99fdaf6658055
+cp %{_builddir}/irrlicht-1.8.4/doc/irrlicht-license.txt %{buildroot}/usr/share/package-licenses/irrlicht/bcbd5fcde0d5d5a7a0e6729f024dec58d6f48777
+cp %{_builddir}/irrlicht-1.8.4/doc/jpglib-license.txt %{buildroot}/usr/share/package-licenses/irrlicht/042c2d15bbb2ea50e91497a2efdecb91fb420fad
+cp %{_builddir}/irrlicht-1.8.4/doc/libpng-license.txt %{buildroot}/usr/share/package-licenses/irrlicht/97b8284aa8384d431f7fb5d3f282cc5c40840a4f
+cp %{_builddir}/irrlicht-1.8.4/source/Irrlicht/bzip2/LICENSE %{buildroot}/usr/share/package-licenses/irrlicht/1c0c6888759a63c32bca7eb63353af2cd9bd5d9e
+cp %{_builddir}/irrlicht-1.8.4/source/Irrlicht/libpng/LICENSE %{buildroot}/usr/share/package-licenses/irrlicht/9d3864488f66fd0af3286cd5430635ad2385f7bc
 pushd source/Irrlicht
 %make_install
 popd
@@ -282,5 +287,9 @@ popd
 
 %files license
 %defattr(0644,root,root,0755)
-/usr/share/package-licenses/irrlicht/source_Irrlicht_bzip2_LICENSE
-/usr/share/package-licenses/irrlicht/source_Irrlicht_libpng_LICENSE
+/usr/share/package-licenses/irrlicht/042c2d15bbb2ea50e91497a2efdecb91fb420fad
+/usr/share/package-licenses/irrlicht/1c0c6888759a63c32bca7eb63353af2cd9bd5d9e
+/usr/share/package-licenses/irrlicht/97b8284aa8384d431f7fb5d3f282cc5c40840a4f
+/usr/share/package-licenses/irrlicht/9d3864488f66fd0af3286cd5430635ad2385f7bc
+/usr/share/package-licenses/irrlicht/bcbd5fcde0d5d5a7a0e6729f024dec58d6f48777
+/usr/share/package-licenses/irrlicht/d964dbe91cbf7511e4f1857db9e99fdaf6658055
