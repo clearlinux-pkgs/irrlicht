@@ -4,7 +4,7 @@
 #
 Name     : irrlicht
 Version  : 1.8.4
-Release  : 16
+Release  : 17
 URL      : https://sourceforge.net/projects/irrlicht/files/Irrlicht%20SDK/1.8/1.8.4/irrlicht-1.8.4.zip
 Source0  : https://sourceforge.net/projects/irrlicht/files/Irrlicht%20SDK/1.8/1.8.4/irrlicht-1.8.4.zip
 Summary  : Open source realtime 3D engine
@@ -20,6 +20,7 @@ BuildRequires : pkgconfig(libjpeg)
 Patch1: build.patch
 Patch2: build-Makefile-system-zlib-and-libpng.patch
 Patch3: build-Makefile-system-libjpeg.patch
+Patch4: 0001-Fix-build-with-glibc-2.32.patch
 
 %description
 The Irrlicht Engine is an open source realtime 3D engine written in C++. It is
@@ -60,13 +61,14 @@ cd %{_builddir}/irrlicht-1.8.4
 %patch1 -p1
 %patch2 -p1
 %patch3 -p1
+%patch4 -p1
 
 %build
 export http_proxy=http://127.0.0.1:9/
 export https_proxy=http://127.0.0.1:9/
 export no_proxy=localhost,127.0.0.1,0.0.0.0
 export LANG=C.UTF-8
-export SOURCE_DATE_EPOCH=1598914897
+export SOURCE_DATE_EPOCH=1622175095
 export GCC_IGNORE_WERROR=1
 export CFLAGS="$CFLAGS -fno-lto "
 export FCFLAGS="$FFLAGS -fno-lto "
@@ -78,7 +80,7 @@ popd
 
 
 %install
-export SOURCE_DATE_EPOCH=1598914897
+export SOURCE_DATE_EPOCH=1622175095
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/irrlicht
 cp %{_builddir}/irrlicht-1.8.4/doc/bzip2-license.txt %{buildroot}/usr/share/package-licenses/irrlicht/d964dbe91cbf7511e4f1857db9e99fdaf6658055

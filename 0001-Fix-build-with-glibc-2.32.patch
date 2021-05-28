@@ -1,0 +1,29 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: Patrick McCarty <patrick.mccarty@intel.com>
+Date: Thu, 27 May 2021 21:07:36 -0700
+Subject: [PATCH] Fix build with glibc >= 2.32
+
+A patch submitted upstream to fix the build with musl also fixes the build for
+glibc 2.32 and newer.
+
+See https://sourceforge.net/p/irrlicht/patches/317/
+
+Signed-off-by: Patrick McCarty <patrick.mccarty@intel.com>
+---
+ source/Irrlicht/COSOperator.cpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/source/Irrlicht/COSOperator.cpp b/source/Irrlicht/COSOperator.cpp
+index 0899d1d..98a6c75 100644
+--- a/source/Irrlicht/COSOperator.cpp
++++ b/source/Irrlicht/COSOperator.cpp
+@@ -11,8 +11,8 @@
+ #else
+ #include <string.h>
+ #include <unistd.h>
+-#ifndef _IRR_SOLARIS_PLATFORM_
+ #include <sys/types.h>
++#ifdef _IRR_OSX_PLATFORM_
+ #include <sys/sysctl.h>
+ #endif
+ #endif

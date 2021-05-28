@@ -1,3 +1,4 @@
 build.patch
 build-Makefile-system-zlib-and-libpng.patch
 build-Makefile-system-libjpeg.patch
+0001-Fix-build-with-glibc-2.32.patch
