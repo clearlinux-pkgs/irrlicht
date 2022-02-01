@@ -1,4 +1,4 @@
-From 459b801898dbc30346ed89fea931df9421146244 Mon Sep 17 00:00:00 2001
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
 From: "Anselmo L. S. Melo" <anselmo.melo@intel.com>
 Date: Tue, 9 Jul 2019 17:15:12 -0700
 Subject: [PATCH] Makefile: system zlib and libpng
@@ -8,10 +8,10 @@ Subject: [PATCH] Makefile: system zlib and libpng
  1 file changed, 3 insertions(+), 5 deletions(-)
 
 diff --git a/source/Irrlicht/Makefile b/source/Irrlicht/Makefile
-index 67a3899..606ce1f 100644
+index bc95884..97bd6e1 100644
 --- a/source/Irrlicht/Makefile
 +++ b/source/Irrlicht/Makefile
-@@ -46,9 +46,7 @@ IRRSWRENDEROBJ = CSoftwareDriver.o CSoftwareTexture.o CTRFlat.o CTRFlatWire.o CT
+@@ -48,9 +48,7 @@ IRRSWRENDEROBJ = CSoftwareDriver.o CSoftwareTexture.o CTRFlat.o CTRFlatWire.o CT
  IRRIOOBJ = CFileList.o CFileSystem.o CLimitReadFile.o CMemoryFile.o CReadFile.o CWriteFile.o CXMLReader.o CXMLWriter.o CWADReader.o CZipReader.o CPakReader.o CNPKReader.o CTarReader.o CMountPointReader.o irrXML.o CAttributes.o lzma/LzmaDec.o
  IRROTHEROBJ = CIrrDeviceSDL.o CIrrDeviceLinux.o CIrrDeviceConsole.o CIrrDeviceStub.o CIrrDeviceWin32.o CIrrDeviceFB.o CLogger.o COSOperator.o Irrlicht.o os.o
  IRRGUIOBJ = CGUIButton.o CGUICheckBox.o CGUIComboBox.o CGUIContextMenu.o CGUIEditBox.o CGUIEnvironment.o CGUIFileOpenDialog.o CGUIFont.o CGUIImage.o CGUIInOutFader.o CGUIListBox.o CGUIMenu.o CGUIMeshViewer.o CGUIMessageBox.o CGUIModalScreen.o CGUIScrollBar.o CGUISpinBox.o CGUISkin.o CGUIStaticText.o CGUITabControl.o CGUITable.o CGUIToolBar.o CGUIWindow.o CGUIColorSelectDialog.o CDefaultGUIElementFactory.o CGUISpriteBank.o CGUIImageList.o CGUITreeView.o
@@ -21,7 +21,7 @@ index 67a3899..606ce1f 100644
  LIBAESGM = aesGladman/aescrypt.o aesGladman/aeskey.o aesGladman/aestab.o aesGladman/fileenc.o aesGladman/hmac.o aesGladman/prng.o aesGladman/pwd2key.o aesGladman/sha1.o aesGladman/sha2.o
  BZIP2OBJ = bzip2/blocksort.o bzip2/huffman.o bzip2/crctable.o bzip2/randtable.o bzip2/bzcompress.o bzip2/decompress.o bzip2/bzlib.o
  
-@@ -56,12 +54,12 @@ BZIP2OBJ = bzip2/blocksort.o bzip2/huffman.o bzip2/crctable.o bzip2/randtable.o
+@@ -58,12 +56,12 @@ BZIP2OBJ = bzip2/blocksort.o bzip2/huffman.o bzip2/crctable.o bzip2/randtable.o
  EXTRAOBJ =
  LINKOBJ = $(IRRMESHOBJ) $(IRROBJ) $(IRRPARTICLEOBJ) $(IRRANIMOBJ) \
  	$(IRRVIDEOOBJ) $(IRRSWRENDEROBJ) $(IRRIOOBJ) $(IRROTHEROBJ) \
@@ -36,7 +36,7 @@ index 67a3899..606ce1f 100644
  CPPFLAGS += $(CXXINCS) -DIRRLICHT_EXPORTS=1
  CXXFLAGS += -Wall -pipe -fno-exceptions -fno-rtti -fstrict-aliasing
  ifndef NDEBUG
-@@ -88,7 +86,7 @@ STATIC_LIB = libIrrlicht.a
+@@ -90,7 +88,7 @@ STATIC_LIB = libIrrlicht.a
  LIB_PATH = ../../lib/$(SYSTEM)
  INSTALL_DIR = /usr/local/lib
  sharedlib install: SHARED_LIB = libIrrlicht.so
@@ -45,6 +45,3 @@ index 67a3899..606ce1f 100644
  staticlib sharedlib: CXXINCS += -I/usr/X11R6/include
  
  #OSX specific options
--- 
-2.22.0
-
